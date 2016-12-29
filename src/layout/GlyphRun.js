@@ -59,8 +59,10 @@ export default class GlyphRun {
       let p = this.positions[index];
       let b = glyph.bbox;
 
-      bbox.addPoint(b.minX + x + p.xOffset, b.minY + y + p.yOffset);
-      bbox.addPoint(b.maxX + x + p.xOffset, b.maxY + y + p.yOffset);
+      if (b.minX !== Infinity && b.minY !== Infinity) {
+        bbox.addPoint(b.minX + x + p.xOffset, b.minY + y + p.yOffset);
+        bbox.addPoint(b.maxX + x + p.xOffset, b.maxY + y + p.yOffset);
+      }
 
       x += p.xAdvance;
       y += p.yAdvance;
